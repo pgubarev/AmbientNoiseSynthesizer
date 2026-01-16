@@ -1,11 +1,12 @@
 import NoteFilter from './Note';
+import SourceController from './SourceController';
 
 export class Synth {
   // Main synth class.
   // Connects other synth classes with source and destination nodes
 
   readonly audioContext: AudioContext;
-  readonly sourceNode: AudioBufferSourceNode;
+  readonly sourceController: SourceController;
 
   readonly activeNoteNodes: Map<string, BiquadFilterNode>;
 
@@ -13,27 +14,20 @@ export class Synth {
 
   constructor() {
     this.audioContext = new AudioContext();
-    this.sourceNode = this.audioContext.createBufferSource();
+    this.sourceController = new SourceController();
 
     this.notes = new NoteFilter(this.audioContext);
     this.activeNoteNodes = new Map();
 
-    this.sourceNode.loop = true;
     this.notes.nodes.forEach(node => node.connect(this.audioContext.destination));
   }
 
   setAudioBuffer(buffer: AudioBuffer) {
-    // TODO: Source node have to be recreated after buffer changed
-
-    this.sourceNode.buffer = buffer;
-
-    // auto start once, to avoid any problems with call start twice
-    this.sourceNode.start();
+    this.sourceController.setAudioBuffer(this.audioContext, buffer);
   }
 
   setLoopParams(loopStart: number, loopEnd: number) {
-    this.sourceNode.loopStart = loopStart;
-    this.sourceNode.loopEnd = loopEnd;
+    this.sourceController.setLoopParams(loopStart, loopEnd);
   }
 
   startPlayNote(note: string, octave: number) {
@@ -43,7 +37,7 @@ export class Synth {
     const node = this.notes.nodes.get(key)!;
     this.activeNoteNodes.set(key, node);
 
-    this.sourceNode.connect(node);
+    this.sourceController.sourceNode!.connect(node);
   }
 
   stopPlayNote(note: string, octave: number) {
@@ -52,6 +46,6 @@ export class Synth {
     if (!node) return;
 
     this.activeNoteNodes.delete(key);
-    this.sourceNode.disconnect(node);
+    this.sourceController.sourceNode!.disconnect(node);
   }
 }

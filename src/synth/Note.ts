@@ -30,15 +30,3 @@ export default class Notes {
     });
   }
 }
-
-
-/*
-this.nodes = [
-  createEQNode(audioContext, 110), // A2
-  createEQNode(audioContext, 220), // A3
-  createEQNode(audioContext, 329), // E4
-  createEQNode(audioContext, 440), // A4
-  createEQNode(audioContext, 523), // C5
-  createEQNode(audioContext, 880), // A5
-];
-*/
