@@ -1,32 +1,28 @@
 import styled from 'styled-components';
 
-import { LoopParams, Keyboard, NoteParams, Uploader } from './controls';
-import { useSampleParamsStore } from './stores';
-import { Processor } from './Processor';
+import { Header, SynthPage } from './pages';
+import { usePagesStore } from './stores';
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0px 20px;
+const StyledPageContentWrapper = styled.div`
+    width: max-content;
+    margin: 50px auto auto auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 `;
 
 function App() {
-  const store = useSampleParamsStore();
+  const store = usePagesStore();
 
   return (
     <>
-      <Processor />
-      <StyledContainer>
-      <Uploader />
-      { !!store.duration && (
-        <>
-          <LoopParams />
-          <NoteParams />
-        </>
-      )}
-
-      <Keyboard />
-      </StyledContainer>
+      <Header />
+      <StyledPageContentWrapper>
+        {store.currentPage === 'Synth' && <SynthPage />}
+        {store.currentPage === 'HowItWorks' && <>how it works</>}
+        {store.currentPage === 'About' && <>about</>}
+      </StyledPageContentWrapper>
     </>
   )
 }

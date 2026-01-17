@@ -11,6 +11,6 @@ createRoot(document.getElementById('root')!).render(
 )
 
 const body = document.getElementsByTagName('body')[0];
-body.style.backgroundColor = palette.dark.dark1;
-body.style.color = palette.light.light3;
+body.style.backgroundColor = palette.almostWhite;
+body.style.color = palette.dark.dark1;
 body.style.fontFamily = `'Courier New', monospace`;

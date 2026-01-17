@@ -4,20 +4,26 @@ import { ChangeEventHandler } from 'react';
 import { palette } from '../theme';
 
 
-const StyledRangeInputContainer = styled.div<{ $reversed: boolean; $percents: number; }>`
+const StyledRangeInputContainer = styled.div<{
+  $reversed: boolean;
+  $percents: number;
+  $componentWidth?: number;
+  $componentHeight?: number;
+}>`
   width: 100%;
   display: flex;
   justify-content: space-between;
   gap: 10px;
 
   input[type='range'] {
-    width: 500px;
-    height: 15px;
+    width: ${ props => props.$componentWidth ? props.$componentWidth + 'px' : '500px' };
+    height: ${ props => props.$componentHeight ? props.$componentHeight + 'px' : '15px' };
 
     overflow: hidden;
     -webkit-appearance: none;
     background-color: ${palette.light.light1};
     outline: none;
+    margin: 0;
 
     background: ${props => {
       const firstColor = !props.$reversed ? palette.frost.paleBlue : palette.light.light1;
@@ -39,20 +45,24 @@ const StyledRangeInputContainer = styled.div<{ $reversed: boolean; $percents: nu
 export function RangeInput(
   props: {
     name: string,
-    label: string,
+    label?: string,
     value: number,
     min: number,
     max: number,
     step?: number,
     reversed?: boolean,
     onChange: ChangeEventHandler,
+    width?: number;
+    height?: number;
   }) {
   return (
     <StyledRangeInputContainer
       $percents={props.value / props.max * 100}
       $reversed={!!props.reversed}
+      $componentWidth={props.width}
+      $componentHeight={props.height}
     >
-      <label htmlFor={props.name}>{props.label}</label>
+      { props.label && <label htmlFor={props.name}>{props.label}</label> }
       <input
         name={props.name}
         type="range"

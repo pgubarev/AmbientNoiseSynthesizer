@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { palette } from '../../theme';
+import { palette } from '../../../../theme';
 
 export const KeysContainer = styled.div`
   display: flex;
@@ -22,4 +22,10 @@ export const KeyButton = styled.div<{ $isBlack: boolean; $pressed: boolean; }>`
   margin-right: ${props => props.$isBlack ? '-15px': '0'};
   z-index: ${props => props.$isBlack ? '1': '0'};
   border: ${props => props.$isBlack ? 'none': 'solid 1px #000000'};
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  padding-bottom: 5px;  
 `;

@@ -1,10 +1,10 @@
 import { ChangeEvent, useCallback } from 'react';
 
-import { BoxWrapper, RangeInput } from '../components';
-import { useNoteParamsStore } from '../stores';
+import { BoxWrapper, RangeInput } from '../../../components';
+import { useNoteParamsStore } from '../../../stores';
 
 export function NoteParams() {
-  // Note: Q factor values between -1000 and 1000.
+  // Note: Q factor values between -1000 and 1000, but should be positive for peaking filters.
   // In this component we pass value as value + 1000 to range input and
   // value - 1000 to store, just to avoid problems with rander input.
 
@@ -17,7 +17,7 @@ export function NoteParams() {
 
   const handleQFactorChange = useCallback((event: ChangeEvent | InputEvent) => {
     const value = (event.target as HTMLInputElement).value as unknown;
-    store.setQFactor(value as number - 1000);
+    store.setQFactor(value as number);
   }, []);
 
   return (
@@ -35,8 +35,8 @@ export function NoteParams() {
         name='qfactor'
         label='Q Factor'
         min={0}
-        max={2000}
-        value={ store.QFactor + 1000 }
+        max={100}
+        value={ store.QFactor }
         onChange={handleQFactorChange}
       />
     </ BoxWrapper>

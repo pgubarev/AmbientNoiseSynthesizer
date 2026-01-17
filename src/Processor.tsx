@@ -26,7 +26,7 @@ async function processUploadedFile(file: File) {
 
   synth.setAudioBuffer(audioBuffer);
 
-  return audioBuffer.duration as number;
+  return audioBuffer;
 }
 
 export function Processor() {
@@ -38,9 +38,9 @@ export function Processor() {
     if (!fileStore.file) return;
     console.log('updated');
 
-    processUploadedFile(fileStore.file).then(duration => {
-      console.log('duration', duration);
-      sampleParamsStore.setDuration(duration);
+    processUploadedFile(fileStore.file).then(audioBuffer => {
+      console.log('duration', audioBuffer.duration);
+      sampleParamsStore.setAudioBuffer(audioBuffer);
     });
   }, [fileStore.file]);
 
