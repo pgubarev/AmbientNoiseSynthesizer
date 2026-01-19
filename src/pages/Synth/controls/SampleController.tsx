@@ -1,6 +1,6 @@
 import { useCallback, SyntheticEvent } from 'react';
 
-import { BoxWrapper, LabelBlueButton } from '../../../components';
+import { BoxWrapper, LabelBlueButton, TitleText, Text } from '../../../components';
 import { useSampleFileStore } from '../../../stores';
 
 export function SampleController() {
@@ -13,10 +13,10 @@ export function SampleController() {
 
   return (
     <BoxWrapper>
-      <h1>SAMPLE</h1>
-      <span>
+      <TitleText>SAMPLE</TitleText>
+      <Text>
         <b>file</b>: {store.file?.name}
-      </span>
+      </Text>
       <div>
         <LabelBlueButton htmlFor='sample-input'>Upload</LabelBlueButton>
         <input

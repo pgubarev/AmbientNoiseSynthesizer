@@ -1,9 +1,12 @@
 import NoteFilter from './Note';
 import SourceController from './SourceController';
+import Analyzer from './Analyzer';
 
 export class Synth {
   // Main synth class.
   // Connects other synth classes with source and destination nodes
+  // Final route:
+  // SourceNode -> InputAnalyzer -> NoteFilter -> Any FX Nodes -> ChannelMergeNode -> OutputAnalyzer -> Destination
 
   readonly audioContext: AudioContext;
   readonly sourceController: SourceController;
@@ -12,14 +15,28 @@ export class Synth {
 
   readonly notes: NoteFilter;
 
+  readonly channelMergeNode: ChannelMergerNode;
+  readonly inputAnalyzer: Analyzer;
+  readonly outputAnalyzer: Analyzer;
+
   constructor() {
     this.audioContext = new AudioContext();
     this.sourceController = new SourceController();
+    this.inputAnalyzer = new Analyzer(this.audioContext);
+    this.outputAnalyzer = new Analyzer(this.audioContext);
+    this.channelMergeNode = this.audioContext.createChannelMerger(32);
 
     this.notes = new NoteFilter(this.audioContext);
     this.activeNoteNodes = new Map();
 
-    this.notes.nodes.forEach(node => node.connect(this.audioContext.destination));
+    this.notes.nodes.forEach(node => {
+      this.inputAnalyzer.node.connect(node);
+      node.connect(this.outputAnalyzer.node);
+    });
+
+    // Connect output nodes
+    this.channelMergeNode.connect(this.outputAnalyzer.node);
+    this.outputAnalyzer.node.connect(this.audioContext.destination);
   }
 
   setAudioBuffer(buffer: AudioBuffer) {

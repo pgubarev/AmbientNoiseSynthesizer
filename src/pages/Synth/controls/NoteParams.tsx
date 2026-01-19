@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback } from 'react';
 
-import { BoxWrapper, RangeInput } from '../../../components';
+import { BoxWrapper, RangeInput, TitleText } from '../../../components';
 import { useNoteParamsStore } from '../../../stores';
 
 export function NoteParams() {
@@ -22,7 +22,7 @@ export function NoteParams() {
 
   return (
     <BoxWrapper>
-      <h1>NOTE FILTER</h1>
+      <TitleText>NOTE FILTER</TitleText>
       <RangeInput
         name='gain'
         label='GAIN'

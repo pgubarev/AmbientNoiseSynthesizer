@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { EventBus, NOTE_PRESSED, NOTE_RELEASED } from '../../../../bus';
-import { BoxWrapper } from '../../../../components';
+import { BoxWrapper, TitleText } from '../../../../components';
 
 import { NOTES } from '../../../../synth/constants';
 import { KeysContainer, KeyButton } from './styled';
@@ -111,7 +111,7 @@ export function Keyboard() {
 
   return (
     <BoxWrapper>
-      <h1>KEYBOARD</h1>
+      <TitleText>KEYBOARD</TitleText>
       <KeysContainer>
         {
           keys.map(params => {

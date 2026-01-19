@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { BoxWrapper, RangeInput } from '../../../../components';
+import { BoxWrapper, RangeInput, TitleText } from '../../../../components';
 import { useSampleParamsStore } from '../../../../stores';
 
 import { StyledCanvasContainer } from './styled.ts';
@@ -23,7 +23,7 @@ export function LoopParams() {
 
   return (
     <BoxWrapper>
-      <h1>LOOP</h1>
+      <TitleText>LOOP</TitleText>
 
       <div>
         <RangeInput

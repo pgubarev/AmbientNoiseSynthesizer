@@ -12,7 +12,7 @@ export const Text = styled.p`
 
 export const TitleText = styled.p`
     color: ${palette.dark.dark4};
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     padding: 0;
     margin: 0;

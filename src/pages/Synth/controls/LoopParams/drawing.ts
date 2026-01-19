@@ -52,7 +52,7 @@ function drawSampleVisualization(context: CanvasRenderingContext2D, channelData:
   const nrOfBuckets = Math.floor(channelData.length / sizeOfABucket);
 
   let drawData = new Float64Array(nrOfLines);
-  let maxDataValue = -1e4;
+  let maxDataValue = Number.MIN_VALUE;
 
   for (let bucketIndex = 0; bucketIndex < nrOfBuckets; bucketIndex++) {
     for (let bucketDataIndex = 0; bucketDataIndex < sizeOfABucket; bucketDataIndex++) {
