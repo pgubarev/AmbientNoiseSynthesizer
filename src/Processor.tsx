@@ -59,7 +59,7 @@ export function Processor() {
   }, [noteParamsStore.gain]);
 
   useEffect(() => {
-    synth.notes.setNoteGain(noteParamsStore.QFactor);
+    synth.notes.setNoteQFactor(noteParamsStore.QFactor);
   }, [noteParamsStore.QFactor]);
 
   return <></>

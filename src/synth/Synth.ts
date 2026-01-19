@@ -11,8 +11,6 @@ export class Synth {
   readonly audioContext: AudioContext;
   readonly sourceController: SourceController;
 
-  readonly activeNoteNodes: Map<string, BiquadFilterNode>;
-
   readonly notes: NoteFilter;
 
   readonly channelMergeNode: ChannelMergerNode;
@@ -21,18 +19,12 @@ export class Synth {
 
   constructor() {
     this.audioContext = new AudioContext();
-    this.sourceController = new SourceController();
     this.inputAnalyzer = new Analyzer(this.audioContext);
     this.outputAnalyzer = new Analyzer(this.audioContext);
+    this.sourceController = new SourceController(this.inputAnalyzer.node);
     this.channelMergeNode = this.audioContext.createChannelMerger(32);
 
-    this.notes = new NoteFilter(this.audioContext);
-    this.activeNoteNodes = new Map();
-
-    this.notes.nodes.forEach(node => {
-      this.inputAnalyzer.node.connect(node);
-      node.connect(this.outputAnalyzer.node);
-    });
+    this.notes = new NoteFilter(this.audioContext, this.inputAnalyzer.node, this.outputAnalyzer.node);
 
     // Connect output nodes
     this.channelMergeNode.connect(this.outputAnalyzer.node);
@@ -48,21 +40,10 @@ export class Synth {
   }
 
   startPlayNote(note: string, octave: number) {
-    const key = note.concat(octave.toFixed());
-    if (this.activeNoteNodes.has(key)) return;
-
-    const node = this.notes.nodes.get(key)!;
-    this.activeNoteNodes.set(key, node);
-
-    this.sourceController.sourceNode!.connect(node);
+    this.notes.startPlayNote(note, octave);
   }
 
   stopPlayNote(note: string, octave: number) {
-    const key = note.concat(octave.toFixed());
-    const node = this.activeNoteNodes.get(key);
-    if (!node) return;
-
-    this.activeNoteNodes.delete(key);
-    this.sourceController.sourceNode!.disconnect(node);
+    this.notes.stopPlayNote(note,  octave);
   }
 }
