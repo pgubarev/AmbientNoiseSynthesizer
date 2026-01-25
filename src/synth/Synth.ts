@@ -47,3 +47,5 @@ export class Synth {
     this.notes.stopPlayNote(note,  octave);
   }
 }
+
+export const synth = new Synth();

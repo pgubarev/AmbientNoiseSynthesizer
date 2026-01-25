@@ -1,1 +1,1 @@
-export { Synth } from "./Synth";
+export { synth } from "./Synth";

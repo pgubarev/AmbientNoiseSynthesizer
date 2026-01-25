@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 
+import { synth } from '../synth';
+
 interface INoteParamsStore {
   gain: number;
   QFactor: number;
@@ -35,13 +37,37 @@ export const useNoteParamsStore = create<INoteParamsStore>(setState => ({
   oscillatorType: 'sawtooth',
   oscillatorNoteType: 'note',
 
-  setGain: (value: number) => setState({ gain: value }),
-  setQFactor: (value: number) => setState({ QFactor: value }),
-  setSubOctaveGain: (value: number) => setState({ subOctaveGain: value }),
-  setUpOctaveGain: (value: number) => setState({ upOctaveGain: value }),
-  setUpOctaveType: (value: string) => setState({ upOctaveType: value }),
+  setGain: (value: number) => {
+    setState({ gain: value });
+    synth.notes.setNoteGain(value);
+  },
+  setQFactor: (value: number) => {
+    setState({ QFactor: value });
+    synth.notes.setNoteQFactor(value);
+  },
+  setSubOctaveGain: (value: number) => {
+    setState({ subOctaveGain: value });
+    synth.notes.setSubOctaveGain(value);
+  },
+  setUpOctaveGain: (value: number) => {
+    setState({ upOctaveGain: value });
+    synth.notes.setUpOctaveGain(value);
+  },
+  setUpOctaveType: (value: string) => {
+    setState({ upOctaveType: value });
+    synth.notes.setUpOctaveType(value);
+  },
 
-  setOscillatorGain: (value: number) => setState({ oscillatorGain: value }),
-  setOscillatorType: (value: string) => setState({ oscillatorType: value }),
-  setOscillatorNoteType: (value: string) => setState({ oscillatorNoteType: value }),
+  setOscillatorGain: (value: number) => {
+    setState({ oscillatorGain: value });
+    synth.notes.setOscillatorGain(value);
+  },
+  setOscillatorType: (value: string) => {
+    setState({ oscillatorType: value });
+    synth.notes.setOscillatorType(value);
+  },
+  setOscillatorNoteType: (value: string) => {
+    setState({ oscillatorNoteType: value });
+    synth.notes.setOscillatorNoteType(value);
+  }
 }));
