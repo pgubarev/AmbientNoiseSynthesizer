@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback } from 'react';
 
-import { BoxWrapper, RangeInput, TitleText } from '../../../components';
+import { BoxWrapper, Column, Row, RangeInput, TitleText } from '../../../components';
 import { useNoteParamsStore } from '../../../stores';
 
 export function NoteParams() {
@@ -20,25 +20,58 @@ export function NoteParams() {
     store.setQFactor(value as number);
   }, []);
 
+  const handleSubOctaveGainChange = useCallback((event: ChangeEvent | InputEvent) => {
+    const value = (event.target as HTMLInputElement).value as unknown;
+    store.setSubOctaveGain(value as number);
+  }, []);
+
+  const handleUpOctaveGainChange = useCallback((event: ChangeEvent | InputEvent) => {
+    const value = (event.target as HTMLInputElement).value as unknown;
+    store.setUpOctaveGain(value as number);
+  }, []);
+
   return (
     <BoxWrapper>
       <TitleText>NOTE FILTER</TitleText>
-      <RangeInput
-        name='gain'
-        label='GAIN'
-        min={0}
-        max={100}
-        value={ store.gain }
-        onChange={handleGainChange}
-      />
-      <RangeInput
-        name='qfactor'
-        label='Q Factor'
-        min={0}
-        max={100}
-        value={ store.QFactor }
-        onChange={handleQFactorChange}
-      />
+
+      <Row>
+        <Column>
+          <RangeInput
+            name='gain'
+            label='GAIN'
+            min={0}
+            max={100}
+            value={ store.gain }
+            onChange={handleGainChange}
+          />
+          <RangeInput
+            name='qfactor'
+            label='Q Factor'
+            min={0}
+            max={100}
+            value={ store.QFactor }
+            onChange={handleQFactorChange}
+          />
+        </Column>
+        <Column>
+          <RangeInput
+            name='subOctaveGain'
+            label='SUB OCTAVE GAIN'
+            min={0}
+            max={100}
+            value={ store.subOctaveGain }
+            onChange={handleSubOctaveGainChange}
+          />
+          <RangeInput
+            name='upOctaveGain'
+            label='UP OCTAVE GAIN'
+            min={0}
+            max={100}
+            value={ store.upOctaveGain }
+            onChange={handleUpOctaveGainChange}
+          />
+        </Column>
+      </Row>
     </ BoxWrapper>
   )
 }

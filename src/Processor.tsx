@@ -62,5 +62,13 @@ export function Processor() {
     synth.notes.setNoteQFactor(noteParamsStore.QFactor);
   }, [noteParamsStore.QFactor]);
 
+  useEffect(() => {
+    synth.notes.setSubOctaveGain(noteParamsStore.subOctaveGain);
+  }, [noteParamsStore.subOctaveGain]);
+
+  useEffect(() => {
+    synth.notes.setUpOctaveGain(noteParamsStore.upOctaveGain);
+  }, [noteParamsStore.upOctaveGain]);
+
   return <></>
 }
