@@ -70,5 +70,13 @@ export function Processor() {
     synth.notes.setUpOctaveGain(noteParamsStore.upOctaveGain);
   }, [noteParamsStore.upOctaveGain]);
 
+  useEffect(() => {
+    synth.notes.setOscillatorGain(noteParamsStore.oscillatorGain);
+  }, [noteParamsStore.oscillatorGain]);
+
+  useEffect(() => {
+    synth.notes.setOscillatorType(noteParamsStore.oscillatorType);
+  }, [noteParamsStore.oscillatorType]);
+
   return <></>
 }

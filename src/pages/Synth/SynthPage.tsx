@@ -1,5 +1,5 @@
 import { Column, Row } from '../../components';
-import { NoSamplesUploaded, LoopParams, Keyboard, NoteParams, SampleController } from './controls';
+import { NoSamplesUploaded, LoopParams, Keyboard, NoteParams, SampleController, OscillatorParams } from './controls';
 import { useSampleParamsStore } from '../../stores';
 import { Processor } from '../../Processor';
 
@@ -18,6 +18,9 @@ export function SynthPage() {
             </Row>
             <Row>
               <NoteParams />
+            </Row>
+            <Row>
+              <OscillatorParams />
             </Row>
             <Row style={{flexGrow: 2}}>
               <Keyboard />
