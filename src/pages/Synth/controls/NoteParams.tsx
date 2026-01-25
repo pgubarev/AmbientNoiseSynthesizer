@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback } from 'react';
 
-import { BoxWrapper, Column, Row, RangeInput, TitleText } from '../../../components';
+import { BoxWrapper, Column, Row, RangeInput, TitleText, Select } from '../../../components';
 import { useNoteParamsStore } from '../../../stores';
 
 export function NoteParams() {
@@ -29,6 +29,12 @@ export function NoteParams() {
     const value = (event.target as HTMLInputElement).value as unknown;
     store.setUpOctaveGain(value as number);
   }, []);
+
+  const handleUpOctaveTypeChange = useCallback((event: ChangeEvent | InputEvent) => {
+    const value = (event.target as HTMLInputElement).value as unknown;
+    store.setUpOctaveType(value as string);
+  }, []);
+
 
   return (
     <BoxWrapper>
@@ -70,6 +76,13 @@ export function NoteParams() {
             value={ store.upOctaveGain }
             onChange={handleUpOctaveGainChange}
           />
+          <Select
+            label='UP OCTAVE TYPE'
+            name='upOctaveType'
+            onChange={handleUpOctaveTypeChange}
+            value={store.upOctaveType}
+            options={['+1', '+2']}
+          ></Select>
         </Column>
       </Row>
     </ BoxWrapper>

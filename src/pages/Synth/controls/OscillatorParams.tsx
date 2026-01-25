@@ -1,6 +1,6 @@
 import { ChangeEvent, useCallback } from 'react';
 
-import { BoxWrapper, Column, Row, RangeInput, TitleText } from '../../../components';
+import { BoxWrapper, Column, Row, RangeInput, TitleText, Select } from '../../../components';
 import { useNoteParamsStore } from '../../../stores';
 
 export function OscillatorParams() {
@@ -14,6 +14,11 @@ export function OscillatorParams() {
   const handleOscillatorTypeChange = useCallback((event: ChangeEvent | InputEvent) => {
     const value = (event.target as HTMLInputElement).value as unknown;
     store.setOscillatorType(value as string);
+  }, []);
+
+  const handleOscillatorNoteTypeChange = useCallback((event: ChangeEvent | InputEvent) => {
+    const value = (event.target as HTMLInputElement).value as unknown;
+    store.setOscillatorNoteType(value as string);
   }, []);
 
   return (
@@ -30,17 +35,20 @@ export function OscillatorParams() {
             value={ store.oscillatorGain * 100 }
             onChange={handleOscillatorGainChange}
           />
-          <select
-            name="osillatorType"
-            id="osillatorType"
+          <Select
+            label='WAVE TYPE'
+            name='osillatorType'
             onChange={handleOscillatorTypeChange}
             value={store.oscillatorType}
-          >
-            <option value="sine">Sine</option>
-            <option value="square">Square</option>
-            <option value="sawtooth">Sawtooth</option>
-            <option value="triangle">Triangle</option>
-          </select>
+            options={['sine', 'square', 'sawtooth', 'triangle']}
+          />
+          <Select
+            label='NOTE TYPE'
+            name='osillatorNoteType'
+            onChange={handleOscillatorNoteTypeChange}
+            value={store.oscillatorNoteType}
+            options={['note', '-octave', 'octave', 'octave + 1']}
+          />
         </Column>
       </Row>
     </ BoxWrapper>

@@ -53,12 +53,27 @@ class Note {
     this._octave_down_note.Q.value = value;
   }
 
+  setUpOctaveType(value: string) {
+    const frequency = value == '+2' ?
+      this._main_note.frequency.value * 3 :
+      this._main_note.frequency.value * 2;
+    this._octave_up_note.frequency.value = frequency;
+  }
+
   setOscillatorGain(value: number) {
     this._oscillatorGain.gain.value = value;
   }
 
   setOscillatorType(value: string) {
     this._oscillator.type = value;
+  }
+
+  setOscillatorNoteType(value: string) {
+    let frequency = this._main_note.frequency.value;
+    if (value === '-octave') frequency = frequency /= 2;
+    if (value === 'octave') frequency = frequency *= 2;
+    if (value === 'octave + 1') frequency = frequency *= 3;
+    this._oscillator.frequency.value = frequency;
   }
 
   startPlay() {
@@ -117,6 +132,12 @@ export default class Notes {
     });
   }
 
+  setUpOctaveType(value: string) {
+    this.nodes.forEach(node => {
+      node.setUpOctaveType(value);
+    })
+  }
+
   setOscillatorGain(value: number) {
     this.nodes.forEach(node => {
       node.setOscillatorGain(value);
@@ -126,6 +147,12 @@ export default class Notes {
   setOscillatorType(value: string) {
     this.nodes.forEach(node => {
       node.setOscillatorType(value);
+    });
+  }
+
+  setOscillatorNoteType(value: string) {
+    this.nodes.forEach(node => {
+      node.setOscillatorNoteType(value);
     });
   }
 

@@ -10,17 +10,23 @@ export const Text = styled.p`
     margin: 0;
 `;
 
+export const Bold = styled.b`
+  font-weight: bold;
+`;
+
 export const TitleText = styled.p`
     color: ${palette.dark.dark4};
     font-size: 20px;
     font-weight: 600;
     padding: 0;
     margin: 0;
+    margin-bottom: 10px;
 `;
 
 export const Column = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 10px;
 `;
 
 export const Row = styled.div`

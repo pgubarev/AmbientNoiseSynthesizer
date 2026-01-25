@@ -44,6 +44,7 @@ export function Processor() {
     });
   }, [fileStore.file]);
 
+  // TODO: убрать все useEffect ниже и явно вызывать установку значений синту на уровне store.
   useEffect(() => {
     synth.setLoopParams(
       sampleParamsStore.loopStart,
@@ -71,12 +72,20 @@ export function Processor() {
   }, [noteParamsStore.upOctaveGain]);
 
   useEffect(() => {
+    synth.notes.setUpOctaveType(noteParamsStore.upOctaveType);
+  }, [noteParamsStore.upOctaveType]);
+
+  useEffect(() => {
     synth.notes.setOscillatorGain(noteParamsStore.oscillatorGain);
   }, [noteParamsStore.oscillatorGain]);
 
   useEffect(() => {
     synth.notes.setOscillatorType(noteParamsStore.oscillatorType);
   }, [noteParamsStore.oscillatorType]);
+
+  useEffect(() => {
+    synth.notes.setOscillatorNoteType(noteParamsStore.oscillatorNoteType);
+  }, [noteParamsStore.oscillatorNoteType]);
 
   return <></>
 }
