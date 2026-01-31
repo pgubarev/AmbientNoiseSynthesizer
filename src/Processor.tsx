@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 
 import { EventBus, NOTE_PRESSED, NOTE_RELEASED, INoteStateChangedEventPayload } from './bus';
-import {
-  useNoteParamsStore,
-  useSampleFileStore,
-  useSampleParamsStore,
-} from './stores';
+import { useSampleFileStore, useSampleParamsStore } from './stores';
 
 import { synth } from './synth';
 
@@ -30,7 +26,6 @@ async function processUploadedFile(file: File) {
 export function Processor() {
   const fileStore = useSampleFileStore();
   const sampleParamsStore = useSampleParamsStore();
-  const noteParamsStore = useNoteParamsStore();
 
   useEffect(() => {
     if (!fileStore.file) return;

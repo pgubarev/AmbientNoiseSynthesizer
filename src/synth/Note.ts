@@ -65,6 +65,7 @@ class Note {
   }
 
   setOscillatorType(value: string) {
+    // @ts-ignore
     this._oscillator.type = value;
   }
 
@@ -90,13 +91,10 @@ class Note {
 export default class Notes {
   nodes: Map<string, Note>;
   readonly activeNoteNodes: Map<string, Note>;
-  private readonly _inputNode: AudioNode;
 
   constructor(audioContext: AudioContext, inputNode: AudioNode, outputNode: AudioNode) {
     this.nodes = new Map();
     this.activeNoteNodes = new Map();
-
-    this._inputNode = inputNode;
 
     NOTES.forEach((octaveNotes, octave) => {
       for (const [note, frequency] of Object.entries(octaveNotes)) {
