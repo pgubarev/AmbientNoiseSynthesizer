@@ -14,7 +14,11 @@ const StyledSelectContainer = styled.div`
       background-color: ${palette.light.light1};
   }
 
-  option:selected {
+  select, ::picker(select) {
+    appearance: base-select;
+  }
+
+  option:hover, option:focus {
     background-color: ${palette.frost.paleBlue};
   }
 `;
