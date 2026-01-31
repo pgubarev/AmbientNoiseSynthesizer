@@ -38,13 +38,13 @@ export function NoteParams() {
 
   return (
     <BoxWrapper>
-      <TitleText>NOTE FILTER</TitleText>
+      <TitleText>Настройки тона</TitleText>
 
       <Row>
         <Column>
           <RangeInput
             name='gain'
-            label='GAIN'
+            label='Усиление'
             min={0}
             max={100}
             value={ store.gain }
@@ -52,7 +52,7 @@ export function NoteParams() {
           />
           <RangeInput
             name='qfactor'
-            label='Q Factor'
+            label='Q-фактор'
             min={0}
             max={100}
             value={ store.QFactor }
@@ -62,7 +62,7 @@ export function NoteParams() {
         <Column>
           <RangeInput
             name='subOctaveGain'
-            label='SUB OCTAVE GAIN'
+            label='Октава вниз'
             min={0}
             max={100}
             value={ store.subOctaveGain }
@@ -70,14 +70,14 @@ export function NoteParams() {
           />
           <RangeInput
             name='upOctaveGain'
-            label='UP OCTAVE GAIN'
+            label='Октава вверх'
             min={0}
             max={100}
             value={ store.upOctaveGain }
             onChange={handleUpOctaveGainChange}
           />
           <Select
-            label='UP OCTAVE TYPE'
+            label='Тип октары вверх'
             name='upOctaveType'
             onChange={handleUpOctaveTypeChange}
             value={store.upOctaveType}

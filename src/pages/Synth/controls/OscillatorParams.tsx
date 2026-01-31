@@ -23,27 +23,27 @@ export function OscillatorParams() {
 
   return (
     <BoxWrapper>
-      <TitleText>OSCILLATOR</TitleText>
+      <TitleText>Осцилятор</TitleText>
 
       <Row>
         <Column>
           <RangeInput
             name='gain'
-            label='GAIN'
+            label='Усиление'
             min={0}
             max={200}
             value={ store.oscillatorGain * 100 }
             onChange={handleOscillatorGainChange}
           />
           <Select
-            label='WAVE TYPE'
+            label='Тип волны'
             name='osillatorType'
             onChange={handleOscillatorTypeChange}
             value={store.oscillatorType}
             options={['sine', 'square', 'sawtooth', 'triangle']}
           />
           <Select
-            label='NOTE TYPE'
+            label='Высота'
             name='osillatorNoteType'
             onChange={handleOscillatorNoteTypeChange}
             value={store.oscillatorNoteType}

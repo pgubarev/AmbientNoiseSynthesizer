@@ -13,13 +13,13 @@ export function Header(){
     <HeaderContainer>
       <HeaderLinksContainer>
         <LinkButton isActive={store.currentPage === 'Synth'} onClick={handleSynthClick}>
-          Synthesizer
+          Синтезатор
         </LinkButton>
         <LinkButton isActive={store.currentPage === 'HowItWorks'} onClick={handleHowItWorksClick}>
-          How it works
+          Как это работает
         </LinkButton>
         <LinkButton isActive={store.currentPage === 'About'} onClick={handleAboutClick}>
-          Author
+          Автор
         </LinkButton>
       </HeaderLinksContainer>
     </HeaderContainer>

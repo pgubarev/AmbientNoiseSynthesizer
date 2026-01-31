@@ -13,12 +13,12 @@ export function SampleController() {
 
   return (
     <BoxWrapper>
-      <TitleText>SAMPLE</TitleText>
+      <TitleText>Сэмпл</TitleText>
       <Text>
-        <Bold>file</Bold>: {store.file?.name}
+        <Bold>Файл</Bold>: {store.file?.name}
       </Text>
       <div>
-        <LabelBlueButton htmlFor='sample-input'>Upload</LabelBlueButton>
+        <LabelBlueButton htmlFor='sample-input'>Загрузить</LabelBlueButton>
         <input
           type='file'
           id='sample-input'

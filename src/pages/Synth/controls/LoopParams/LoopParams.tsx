@@ -23,7 +23,7 @@ export function LoopParams() {
 
   return (
     <BoxWrapper>
-      <TitleText>LOOP</TitleText>
+      <TitleText>Настройка зацикливания</TitleText>
 
       <div>
         <RangeInput

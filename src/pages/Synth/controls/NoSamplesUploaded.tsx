@@ -14,14 +14,14 @@ export function NoSamplesUploaded() {
   return (
     <Column style={{alignItems: 'center'}}>
       <TitleText>
-        Upload sample
+        Загрузка сэмпла
       </TitleText>
       <Text style={{marginTop: '10px'}}>
-        Upload audio sample of ambient sound. You could use mp3 or wave format.<br/>
-        Sample will be processed with equalizers and gain filters to create new sound.<br/>
-        Don't worry, file won't be uploaded to any server, just processed in browser.
+        Вначале загрузите сэмпл. Можно использовать mp3 или wave формат.<br/>
+        Сэмпл будет обработан эквалайзером для создания нового звука.<br/>
+        Обработка производится прямо в браузере, файл не будет загружен куда либо еще.
       </Text>
-      <LabelBlueButton htmlFor='sample-input'>Upload</LabelBlueButton>
+      <LabelBlueButton htmlFor='sample-input'>Загрузить</LabelBlueButton>
       <input
         type='file'
         id='sample-input'

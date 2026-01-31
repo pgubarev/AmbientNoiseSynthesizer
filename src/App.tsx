@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import { Header, SynthPage } from './pages';
+import { Header, SynthPage, HowItWorksPage, AboutPage } from './pages';
 import { usePagesStore } from './stores';
 
 const StyledPageContentWrapper = styled.div`
-    width: max-content;
+    width: max-conten;
     margin: 50px auto auto auto;
     display: flex;
     align-items: center;
@@ -20,11 +20,11 @@ function App() {
       <Header />
       <StyledPageContentWrapper>
         {store.currentPage === 'Synth' && <SynthPage />}
-        {store.currentPage === 'HowItWorks' && <>how it works</>}
-        {store.currentPage === 'About' && <>about</>}
+        {store.currentPage === 'HowItWorks' && <HowItWorksPage />}
+        {store.currentPage === 'About' && <AboutPage />}
       </StyledPageContentWrapper>
     </>
-  )
+  );
 }
 
 export default App
